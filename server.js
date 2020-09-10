@@ -26,10 +26,10 @@ const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 const FORECAST_DELAY = 0;
 
 // CODELAB: If running locally, set your Dark Sky API key here
-const API_KEY = process.env.DARKSKY_API_KEY;
-const BASE_URL = `https://api.darksky.net/forecast`;
+const API_KEY = process.env.OPENWEATHERMAP_API_KEY;
+const BASE_URL = `https://api.openweathermap.org/data/2.5/weather?id=`;
 
-// Fake forecast data used if we can't reach the Dark Sky API
+// Fake forecast data used if we can't reach the openweathermap API
 const fakeForecast = {
   fakeData: true,
   latitude: 0,
@@ -151,7 +151,7 @@ function getForecast(req, resp) {
       resp.json(data);
     }, FORECAST_DELAY);
   }).catch((err) => {
-    console.error('Dark Sky API Error:', err.message);
+    console.error('Openweathermap API Error:', err.message);
     resp.json(generateFakeForecast(location));
   });
 }
